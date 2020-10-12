@@ -55,16 +55,20 @@ app.post("/get/:key", function(req,res) {
   })
 })
 app.post("/create/:key/:key2", function(req,res) {
-console.log("why")
+  console.log("hi")
 fs.readFile(`${req.params.key}:${req.params.key2}.json`, "utf8", function(err,data) {
+  console.log("hm")
   if (err) {
+    console.log("why")
     fs.writeFile(`${req.params.key}:${req.params.key2}.json`, "{}", err => {
-      if (err) throw err
+      if (err) {
+      console.log(err + "awww comon")
+      }
 
       res.json({"url" : `https://KudoDB.kudos.repl.co/get/${req.params.key}:${req.params.key2}`})
       res.flush()
     })
   }
-}) 
+})
 })
 app.listen( process.env.PORT || 8080)
