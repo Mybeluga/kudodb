@@ -13,7 +13,7 @@ app.use(compression())
 app.post("/data/:key", function(req,res) {
   fs.readFile(`${req.params.key}.json`, "utf8", function(err,data) {
     if (err) {
-      res.json({"err" : err})
+      res.json({"res" : "404"})
       res.flush()
     } else {
 res.json({"res" : "success", "data" : data})
@@ -47,7 +47,7 @@ app.post("/get/:key", function(req,res) {
   fs.readFile(`${req.params.key}.json`, "utf8", function(err,data) {
 console.log(err)
     if (err) {
-      res.json({"res" : "404"})
+      res.json({"err" : err})
       res.flush()
     } else {
   res.json({"res" : "success", "data" : data})
