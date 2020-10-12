@@ -65,4 +65,4 @@ fs.readFile(`${req.params.key}:${req.params.key2}.json`, "utf8", function(err,da
   }
 })
 })
-app.listen(8080)
+app.listen( process.env.PORT || 8080)
