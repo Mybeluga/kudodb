@@ -43,8 +43,9 @@ res.flush()
 })
 
 app.post("/get/:key", function(req,res) {
+  console.log("waw")
   fs.readFile(`${req.params.key}.json`, "utf8", function(err,data) {
-
+console.log(err)
     if (err) {
       res.json({"res" : "404"})
       res.flush()
