@@ -1,4 +1,3 @@
-
 const bp = require("body-parser");
 const express = require("express");
 const app = express();
@@ -43,11 +42,10 @@ res.flush()
 })
 
 app.post("/get/:key", function(req,res) {
-  console.log("waw")
   fs.readFile(`${req.params.key}.json`, "utf8", function(err,data) {
-console.log(err)
+
     if (err) {
-      res.json({"err" : err})
+      res.json({"res" : "404"})
       res.flush()
     } else {
   res.json({"res" : "success", "data" : data})
@@ -56,15 +54,10 @@ console.log(err)
   })
 })
 app.post("/create/:key/:key2", function(req,res) {
-  console.log("hi")
 fs.readFile(`${req.params.key}:${req.params.key2}.json`, "utf8", function(err,data) {
-  console.log("hm")
   if (err) {
-    console.log("why")
     fs.writeFile(`${req.params.key}:${req.params.key2}.json`, "{}", err => {
-      if (err) {
-      console.log(err + "awww comon")
-      }
+      if (err) throw err
 
       res.json({"url" : `https://KudoDB.kudos.repl.co/get/${req.params.key}:${req.params.key2}`})
       res.flush()
