@@ -55,7 +55,7 @@ app.post("/get/:key", function(req,res) {
   })
 })
 app.post("/create/:key/:key2", function(req,res) {
-  try {
+console.log("why")
 fs.readFile(`${req.params.key}:${req.params.key2}.json`, "utf8", function(err,data) {
   if (err) {
     fs.writeFile(`${req.params.key}:${req.params.key2}.json`, "{}", err => {
@@ -65,9 +65,6 @@ fs.readFile(`${req.params.key}:${req.params.key2}.json`, "utf8", function(err,da
       res.flush()
     })
   }
-})
-  } catch (e) {
-  console.log(e)
-  }
+}) 
 })
 app.listen( process.env.PORT || 8080)
