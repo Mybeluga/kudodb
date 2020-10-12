@@ -1,3 +1,4 @@
+
 const bp = require("body-parser");
 const express = require("express");
 const app = express();
@@ -54,6 +55,7 @@ app.post("/get/:key", function(req,res) {
   })
 })
 app.post("/create/:key/:key2", function(req,res) {
+  try {
 fs.readFile(`${req.params.key}:${req.params.key2}.json`, "utf8", function(err,data) {
   if (err) {
     fs.writeFile(`${req.params.key}:${req.params.key2}.json`, "{}", err => {
@@ -64,5 +66,8 @@ fs.readFile(`${req.params.key}:${req.params.key2}.json`, "utf8", function(err,da
     })
   }
 })
+  } catch (e) {
+  console.log(e)
+  }
 })
 app.listen( process.env.PORT || 8080)
